@@ -1,0 +1,81 @@
+/* .copy-link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .link-input {
+    width: 80%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+  /* } */
+  
+  /* .copy-button {
+    width: 80%; /* Set button width to match input width */
+    /* background-color: #7209B7;
+    color: white;
+    border: none;
+    padding: 10px 0; /* Adjust padding to vertically center content */
+    /* text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer; */
+  /* }  */ 
+  
+  /* .copy-button:hover {
+    background-color: #7209B7;
+  }  */
+  
+  /* --------------------- QR Code Card CSS ----------- */
+
+  /* .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .card-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .card-content {
+    text-align: center;
+  }
+  
+  .social-icons {
+    margin-top: 10px;
+    font-size: 35px;
+  }
+
+  .oval-button {
+    background-color: #047DFB;
+    color: #fff;
+    border: none;
+    border-radius: 10%;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 2rem;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .oval-button:hover {
+    background-color: #0056b3;
+  } */
+  

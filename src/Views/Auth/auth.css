@@ -1,0 +1,46 @@
+.main-div{
+  padding: 50px;
+}
+.logo{
+  width:100px;
+  height:100px
+}
+.login-inputs{
+  border-top: 0!important;
+  border-left: 0!important;
+  border-right: 0!important;
+  border-bottom: 1px solid blue!important;
+  padding: 15px!important;
+}
+
+.login-text {
+    color: #B4B5B5 !important;
+    font-size: 15px !important;
+    font-style: Poppins;
+
+}
+.forgot-text {
+    color: #B4B5B5;
+    font-style: Poppins;
+    text-decoration: none;
+}
+.signup-link {
+    color: blue;
+    font-style: Poppins;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.signup-text {
+    color: #9ba2a2 !important;
+    font-size: 14px !important;
+    font-style: Poppins;
+
+}
+.auth-button{
+  background-color:rgb(44, 44, 142)!important;
+  border-radius: 100px!important;
+  padding: 8px!important;
+}
+
+

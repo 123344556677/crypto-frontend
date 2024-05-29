@@ -1,0 +1,67 @@
+.sidebar{
+    height: 100vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    /* background-color: rgba(0,0,0,0.1); */
+    background-color: #1E1E2D;
+    
+} 
+
+.sidebar .menu-item p{
+    color: white;
+}
+
+.sidebar .menu-item .btn{
+    color: white;
+}
+
+
+.sidebar .sub-menu-item p{
+    color: white;
+    padding-left: 4rem;
+    margin-top: 0.5rem;
+}
+
+.user-menubar .menu-item {
+    display: flex;
+    text-align: center;
+    padding-top: 25px;
+    height: 60px;
+    color: #303341;
+    width: 100%;
+    padding-left: 1.5rem;
+}
+
+.user-menubar .menu-item svg {
+    font-size: 24px;
+}
+
+.user-menubar .menu-item p {
+    font-size: 18px;
+    margin-left: 25px;
+}
+
+.user-menubar .menu-item.active {
+    background-color: #303341;
+    color: #fff !important;
+    width: 100%;
+}
+
+div {
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:vertical {
+      margin: 5px;
+      background-color: #999;
+      -webkit-border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+      height: 5px;
+      display: block;
+    }
+}

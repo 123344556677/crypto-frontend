@@ -1,0 +1,28 @@
+.bottom-bar {
+  display: block;
+  width: 100%;
+  border-radius:50px 50px 0 0 ;
+  justify-content: space-between!important;
+}
+
+.nav-link {
+  color: #fff !important;
+  text-align: center;
+  padding: 8px!important;
+}
+
+.nav-item {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 576px) {
+  .nav-link {
+    font-size: 0.2rem;
+    padding: 0.2rem;
+  }
+}
+.bottom-bar-icons{
+    font-size: 20px;
+
+}

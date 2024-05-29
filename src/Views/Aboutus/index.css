@@ -1,0 +1,36 @@
+.affiliate-head{
+    color: #7209B7;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.affiliate-text{
+    text-align: left;
+    font-size: 18px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* For small devices (phones) */
+@media (max-width: 576px) {
+    .affiliate-head {
+      font-size: 1.2rem;
+    }
+  }
+  
+  /* For medium devices (tablets) */
+  @media (min-width: 576px) and (max-width: 768px) {
+    .affiliate-head {
+      font-size: 1.4rem;
+    }
+  }
+  
+  /* For large devices (desktops) */
+  @media (min-width: 768px) {
+    .affiliate-head {
+      font-size: 1.6rem;
+    }
+  }
+  

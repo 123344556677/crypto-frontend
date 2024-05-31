@@ -5,19 +5,19 @@
   justify-content: space-between!important;
 }
 
-.nav-link {
+.bottom-bar-link {
   color: #fff !important;
   text-align: center;
   padding: 8px!important;
 }
 
-.nav-item {
+.bottom-bar-item {
   display: flex;
   justify-content: center;
 }
 
 @media (max-width: 576px) {
-  .nav-link {
+  .bottom-bar-link {
     font-size: 0.2rem;
     padding: 0.2rem;
   }

@@ -9,36 +9,36 @@ import { FaChartPie } from "react-icons/fa";
 const BottomBar = () => {
   return (
     <Navbar color="dark" dark fixed="bottom" className="bottom-bar">
-      <NavItem>
-        <NavLink href="#home" className="ml-3">
+      <NavItem className="bottom-bar-item">
+        <NavLink href="#home" className="ml-3 bottom-bar-link" >
           <IoMdHome className="bottom-bar-icons" />
           <br />
           <span>Home</span>
         </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink href="#about">
+      <NavItem className="bottom-bar-item">
+        <NavLink href="#about" className="bottom-bar-link">
           <FaChartPie className="bottom-bar-icons" />
           <br />
           <span>Home</span>
         </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink href="#about">
+      <NavItem className="bottom-bar-item">
+        <NavLink href="#about" className="bottom-bar-link">
           <MdOutlineBarChart className="bottom-bar-icons" />
           <br />
           <span>Quantity</span>
         </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink href="#services">
+      <NavItem className="bottom-bar-item">
+        <NavLink href="#services" className="bottom-bar-link">
           <MdOutlineSupportAgent className="bottom-bar-icons" />
           <br />
           <span>Customer Support</span>
         </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink href="#contact" className="mr-3">
+      <NavItem className="bottom-bar-item">
+        <NavLink href="#contact" className="mr-3 bottom-bar-link">
           <CgProfile className="bottom-bar-icons" />
           <br />
           <span>Profile</span>

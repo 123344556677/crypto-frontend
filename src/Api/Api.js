@@ -1,6 +1,7 @@
 import { createAxiosInstance, fileInstance } from './ApiInstances';
 import axios from 'axios';
 
+
 const url = process.env.REACT_APP_API_URL;
 
 const api = createAxiosInstance();
@@ -50,4 +51,7 @@ export const cashDeposit = (values) => {
 };
 export const checkWallet = (values) => {
   return api.post('/transaction/checkWalletAddress', values);
+};
+export const cashWithdrawal= (values) => {
+  return api.post('/transaction/createCashWithDrawal', values);
 };

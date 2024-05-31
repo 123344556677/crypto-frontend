@@ -8,3 +8,10 @@ export const setLocalStorage = (key, value) => {
     }
   });
 };
+export const refreshPage=()=>{
+  window.location.reload(false)
+}
+export const logOut=()=>{
+  window.location.href = "/";
+  localStorage.clear();
+}

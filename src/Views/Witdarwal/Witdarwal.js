@@ -1,73 +1,77 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-import { cashDeposit, checkWallet } from "../../Api/Api";
+import {
+  cashWithdrawal,
+  checkWallet,
+  getUser,
+} from "../../Api/Api";
 import { errorAlert, successAlert } from "../../Components/Alerts/Alerts";
 import { IoMdArrowBack } from "react-icons/io";
-import './Withrawal.css'
+import "./Withrawal.css";
 
 const Withdrawal = () => {
   const navigate = useNavigate();
-
+  const id = localStorage.getItem("id");
   const [walletAdress, setWalletAdress] = useState();
+  const [userData, setUserData] = useState();
   const [fundingPass, setFundingPass] = useState();
-  const [checkCondition, setCheckCondition] = useState("verify")
-  const [formData, setFormData] = useState({
-    transactionNumber: null,
-    TransactionImage: null,
-  });
+  const [WithdrawAmount, setWithdraAmount] = useState();
+  const [checkCondition, setCheckCondition] = useState("verify");
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (files) {
-      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
-    } else {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
-  };
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const response = await getUser(id);
+        setUserData(response?.data?.user);
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   const submit = async (event) => {
     event.preventDefault();
     if (checkCondition === "verify") {
-        try{
-            const values={
-                walletAddress:walletAdress,
-                fundPassword:fundingPass
-            }
-            const response = await checkWallet(values);
-            console.log(response,"wallet check response----->")
-      setCheckCondition("withdraw");
-    }
-    catch(err){
-        console.log(err)
+      console.log(walletAdress, "wallet adress");
+      try {
+        const values = {
+          walletAddress: walletAdress,
+          fundPassword: fundingPass,
+        };
+        const response = await checkWallet(values);
+        successAlert(response?.data?.message);
+        setCheckCondition("withdraw");
+      } catch (err) {
+        console.log(err);
         errorAlert(err?.response?.data?.err);
-    
-}
-}
-
-    try {
-      if (checkCondition === "withdraw") {
-        const { transactionNumber, TransactionImage } = formData;
-        const formDataToSend = new FormData();
-        formDataToSend.append("transactionNumber", transactionNumber);
-        // formDataToSend.append("amount", depositAmount);
-        formDataToSend.append("TransactionImage", TransactionImage);
-        const response = await cashDeposit(formDataToSend);
-        console.log(response, "cash reposne");
-        if (response?.status === 201) {
-          successAlert(response?.data?.message);
-          navigate("/home");
-        }
       }
-    } catch (err) {
-      errorAlert(err?.response?.data?.err);
+    } else {
+      try {
+        const values = {
+          walletAddress: walletAdress,
+          fundPassword: fundingPass,
+          amount: parseFloat(WithdrawAmount),
+          type: "USDT-TRC20",
+        };
+        const response = await cashWithdrawal(values);
+        successAlert(response?.data?.message);
+        navigate("/Home");
+      } catch (err) {
+        console.log(err);
+        errorAlert(err?.response?.data?.err);
+      }
     }
   };
 
   return (
     <div className="main-div">
-    <span className="back-icon" onClick={()=>navigate('/Home')}><IoMdArrowBack/></span>
+      <span className="back-icon" onClick={() => navigate("/Home")}>
+        <IoMdArrowBack />
+      </span>
       <Row className="w-100 justify-content-center mt-5">
         <Col xl={4}>
           <Card className="auth-cards p-3">
@@ -115,7 +119,7 @@ const Withdrawal = () => {
                 <Row className="mt-3">
                   <Col className="">Current Balance</Col>
 
-                  <Col className="">$20</Col>
+                  <Col className="">${userData?.balance}</Col>
                 </Row>
                 <Row className="mt-3">
                   <Col className="">withdraw Adress</Col>
@@ -135,9 +139,9 @@ const Withdrawal = () => {
                     <Form.Control
                       type="number"
                       placeholder="Withdrawal amount"
-                      name="twithdrawalAmount"
+                      name="withdrawalAmount"
                       className="login-inputs"
-                      onChange={handleChange}
+                      onChange={(e) => setWithdraAmount(e.target.value)}
                       required
                     />
                   </Form.Group>

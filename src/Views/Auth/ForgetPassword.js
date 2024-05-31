@@ -36,7 +36,6 @@ const ForgetPassword = () => {
           code: code,
         };
         const response = await checkOTP(values, token);
-        console.log(response, "otp response----->");
         if (response?.status === 200) {
           successAlert(response?.data?.message);
           setToken(response.data?.data?.token);
@@ -53,7 +52,6 @@ const ForgetPassword = () => {
             successAlert(response?.data?.message);
             navigate('/')
           }
-          console.log(response, "password response----->");
         } else {
           errorAlert("Password and Confirm Password does not match");
         }

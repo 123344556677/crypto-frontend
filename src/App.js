@@ -16,8 +16,8 @@ import AuthorizeLayout from "./Layout/Authorize.Layout";
 import WebsiteLayout from "./Layout/website.layout";
 
 import { Auth } from "./context/Auth.Context";
-import Navbar from "./Components/Navbar";
-import CustomNavbar from "./Components/Navbar";
+// import Navbar from "./Components/Navbar";
+// import CustomNavbar from "./Components/Navbar";
 
 function App() {
   const { isAuthenticated } = Auth();

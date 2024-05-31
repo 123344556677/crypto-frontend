@@ -19,7 +19,6 @@ const Recharge = () => {
     const fetchUserInfo = async () => {
       try {
         const response = await getUser(id);
-        console.log(response)
         setUserData(response?.data?.user);
       } catch (error) {
         console.error("Error fetching approved cash deposits:", error);

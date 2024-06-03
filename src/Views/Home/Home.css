@@ -1,9 +1,9 @@
-
+/* 
 .home-card {
     border: 1px solid rgba(0, 0, 0, 0.125);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
-    border-top: none; /* Remove top border */
-    margin-top: 20px; /* Adjust margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    margin-top: 20px; 
     border-radius: 5px; 
     background-color: #7209B7;
 }
@@ -13,8 +13,8 @@
 .circle {
     width: 200px;
     height: 200px;
-    border-radius: 50%; /* Ensures the div is circular */
-    background-color: black; /* Example background color */
+    border-radius: 50%;
+    background-color: black; 
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
@@ -25,14 +25,14 @@
 }
 
 .circle p {
-    margin: 0; /* Remove default margins */
-    color: white; /* Example text color */
+    margin: 0;
+    color: white;
 }
 
 .square {
-    width: 900px; /* Adjust as needed */
-    height: 150px; /* Adjust as needed */
-    background-color: black; /* Example background color */
+    width: 900px; 
+    height: 150px;
+    background-color: black;
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
@@ -46,14 +46,14 @@
 }
 
 .custom-search {
-    width: 1000px; /* Adjust the width as needed */
-    /* Add any other styles as needed */
-}
+    width: 1000px;
+  
+} */
 
 
 /* ----------------- Home Coins ----------------------------- */
 
-.tabs-container {
+/* .tabs-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,17 +63,17 @@
   .custom-tabs {
     display: flex;
     justify-content: space-between;
-    width: 80%; /* Adjust as needed */
+    width: 80%; 
   }
   
   .tab-content {
-    font-size: 18px; /* Adjust content font size as needed */
-    margin-top: 20px; /* Add space between tabs and content */
+    font-size: 18px;
+    margin-top: 20px; 
   }
   
   .nav-link {
-    font-size: 50px; /* Adjust tab font size as needed */
-    color: black; /* Set tab color to black */
+    font-size: 50px; 
+    color: black;
   }
 
   .bg-image{
@@ -81,6 +81,6 @@
     width: 1100px;
     height: 80px;
     border-radius: 5%;
-  }
+  } */
 
   

@@ -291,9 +291,6 @@ const Signup = () => {
           </Card>
         </Col>
       </Row>
-      {
-      //  <BottomBar/>
-      }
     </div>
   );
 };

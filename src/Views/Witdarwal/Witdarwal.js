@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-import {
-  cashWithdrawal,
-  checkWallet,
-  getUser,
-} from "../../Api/Api";
+import { cashWithdrawal, checkWallet, getUser } from "../../Api/Api";
 import { errorAlert, successAlert } from "../../Components/Alerts/Alerts";
 import { IoMdArrowBack } from "react-icons/io";
 import "./Withrawal.css";
@@ -25,6 +21,8 @@ const Withdrawal = () => {
       try {
         const response = await getUser(id);
         setUserData(response?.data?.user);
+        setWalletAdress(response?.data?.user?.walletAddress || "");
+        setCheckCondition(response?.data?.user?.walletAddress?"withdraw":"verify")
       } catch (error) {
         console.error("Error fetching approved cash deposits:", error);
       }
@@ -75,7 +73,7 @@ const Withdrawal = () => {
       <Row className="w-100 justify-content-center mt-5">
         <Col xl={4}>
           <Card className="auth-cards p-3">
-            {checkCondition === "verify" && (
+            {!userData?.walletAddress && checkCondition === "verify" && (
               <>
                 <Row className="mt-3">
                   <Col className="">withdraw Type</Col>
@@ -114,7 +112,7 @@ const Withdrawal = () => {
                 </Form>
               </>
             )}
-            {checkCondition === "withdraw" && (
+            {walletAdress && checkCondition === "withdraw" && (
               <>
                 <Row className="mt-3">
                   <Col className="">Current Balance</Col>

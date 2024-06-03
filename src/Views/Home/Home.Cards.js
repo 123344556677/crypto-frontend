@@ -9,54 +9,57 @@ import { Link } from "react-router-dom"
 const HomeCards = () => {
     return (
         <div>
-            <Row>
-                <Col sm={6}>
+            <Row className="w-100">
+                <Col sm={12}>
                     <Carousel className="mt-2">
                         <Carousel.Item>
-                            <img style={{ width: "100%", height: '300px' }} src="/image 1.jpg" />
+                            <img style={{ width: "100%", height: '400px' }} src="/image 1.jpg" alt="banner" />
                         </Carousel.Item>
 
                         <Carousel.Item>
-                            <img style={{ width: "100%", height: '300px' }} src="/image 2.jpg" />
+                            <img style={{ width: "100%", height: '400px' }} src="/image 2.jpg" alt="banner" />
                         </Carousel.Item>
 
                         <Carousel.Item>
-                            <img style={{ width: "100%", height: '300px' }} src="/image 3.jpg" />
+                            <img style={{ width: "100%", height: '400px' }} src="/image 3.jpg" alt="banner"/>
                         </Carousel.Item>
                     </Carousel>
                 </Col>
+                
+{
+                // <Col sm={6}>
+                //     <div className="circle">
+                //         <p>
+                //             Level 1
+                //         </p>
 
-                <Col sm={6}>
-                    <div className="circle">
-                        <p>
-                            Level 1
-                        </p>
+                //         <p>
+                //             Free Member
+                //         </p>
+                //     </div>
 
-                        <p>
-                            Free Member
-                        </p>
-                    </div>
+                //     {/* <div className="square">
 
-                    {/* <div className="square">
+                //         <div className="content mb-3">
+                //             <p>
+                //                 Referral URL
+                //             </p>
+                //         </div>
 
-                        <div className="content mb-3">
-                            <p>
-                                Referral URL
-                            </p>
-                        </div>
+                //         <div className="search">
+                //             <Form >
+                //                 <FormControl className="custom-search" type="text" placeholder="Search" />
+                //             </Form>
+                //         </div>
+                //     </div> */}
+                // </Col>
+            }
 
-                        <div className="search">
-                            <Form >
-                                <FormControl className="custom-search" type="text" placeholder="Search" />
-                            </Form>
-                        </div>
-                    </div> */}
-                </Col>
             </Row>
 
             {/* ------------------- Cards ------------------------- */}
             <div className="text-center">
-                <Row className="mt-5">
+                <Row className="mt-5 w-100">
 
                     <Col sm={3}>
                         <Link to="/recharge" style={{ textDecoration: "none" }}>

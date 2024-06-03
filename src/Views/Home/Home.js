@@ -10,6 +10,7 @@ import HomeCards from "./Home.Cards";
 import HomeCoins from "./Home.coins";
 
 import CustomNavbar from "../../Components/Navbar/Navbar";
+import BottomBar from "../../Components/BottomBar/BottomBar";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,12 +23,10 @@ const Home = () => {
   return (
     <>
       <CustomNavbar />
-      <Container>
+
         <HomeCards />
 
-        <div className="mt-5 mb-5">
-          <HomeCoins />
-        </div>
+        
 
         {/* Modal */}
         {
@@ -43,7 +42,7 @@ const Home = () => {
           //     </Modal.Body>
           // </Modal>
         }
-      </Container>
+      <BottomBar/>
     </>
   );
 };

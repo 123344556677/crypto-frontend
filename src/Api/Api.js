@@ -55,3 +55,6 @@ export const checkWallet = (values) => {
 export const cashWithdrawal= (values) => {
   return api.post('/transaction/createCashWithDrawal', values);
 };
+export const getAdminWallet = () => {
+  return api.get('/transaction/getAdminWalletAddress');
+};

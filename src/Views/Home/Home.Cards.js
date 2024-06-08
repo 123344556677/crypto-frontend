@@ -1,137 +1,90 @@
-import React from "react"
+import React from "react";
 
-import { Card, Container, Row, Col, Carousel, Form, FormControl, Modal } from 'react-bootstrap';
+import {
+  Carousel,
+} from "react-bootstrap";
 
-import "./Home.css"
+import "./Home.css";
 
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { PiHandDepositFill, PiHandWithdrawFill } from "react-icons/pi";
+import { RiTeamFill } from "react-icons/ri";
+import { FaShareSquare } from "react-icons/fa";
 
 const HomeCards = () => {
-    return (
-        <div>
-            <Row className="w-100">
-                <Col sm={12}>
-                    <Carousel className="mt-2">
-                        <Carousel.Item>
-                            <img style={{ width: "100%", height: '400px' }} src="/image 1.jpg" alt="banner" />
-                        </Carousel.Item>
+  return (
+    <div>
+      <div>
+        <Carousel className="">
+          <Carousel.Item>
+            <img
+              style={{ width: "100%", height: "400px" }}
+              src="/image 2.png"
+              alt="banner"
+            />
+          </Carousel.Item>
 
-                        <Carousel.Item>
-                            <img style={{ width: "100%", height: '400px' }} src="/image 2.jpg" alt="banner" />
-                        </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ width: "100%", height: "400px" }}
+              src="/az-2.jpeg"
+              alt="banner"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ width: "100%", height: "400px" }}
+              src="/az-3.jpeg"
+              alt="banner"
+            />
+          </Carousel.Item>
+        </Carousel>
+      </div>
 
-                        <Carousel.Item>
-                            <img style={{ width: "100%", height: '400px' }} src="/image 3.jpg" alt="banner"/>
-                        </Carousel.Item>
-                    </Carousel>
-                </Col>
-                
-{
-                // <Col sm={6}>
-                //     <div className="circle">
-                //         <p>
-                //             Level 1
-                //         </p>
+      <div
+        className="text-center"
+        style={{ marginBottom: "150px", marginTop: "50px" }}
+      >
+        <div className="home-container">
+          <div className="home-card">
+            <Link to="/recharge" style={{ textDecoration: "none" }}>
+              <div className="card-content">
+                <PiHandDepositFill className="home-icons" />
+              </div>
+              <h5 className="text-white mt-1">Deposit</h5>
+            </Link>
+          </div>
 
-                //         <p>
-                //             Free Member
-                //         </p>
-                //     </div>
+          <div className="home-card">
+            <Link to="/withdrawal" style={{ textDecoration: "none" }}>
+              <div className="card-content">
+                <PiHandWithdrawFill className="home-icons" />
+              </div>
+              <h5 className="text-white mt-1">Withdraw</h5>
+            </Link>
+          </div>
 
-                //     {/* <div className="square">
+          <div className="home-card">
+            <Link to="/team" style={{ textDecoration: "none" }}>
+              <div className="card-content">
+                <RiTeamFill className="home-icons" />
+              </div>
+              <h5 className="text-white mt-1">Team</h5>
+            </Link>
+          </div>
 
-                //         <div className="content mb-3">
-                //             <p>
-                //                 Referral URL
-                //             </p>
-                //         </div>
-
-                //         <div className="search">
-                //             <Form >
-                //                 <FormControl className="custom-search" type="text" placeholder="Search" />
-                //             </Form>
-                //         </div>
-                //     </div> */}
-                // </Col>
-            }
-
-            </Row>
-
-            {/* ------------------- Cards ------------------------- */}
-            <div className="text-center">
-                <Row className="mt-5 w-100">
-
-                    <Col sm={3}>
-                        <Link to="/recharge" style={{ textDecoration: "none" }}>
-                            <Card className='home-card' style={{ backgroundColor: '#808080', color: 'white' }}>
-                                <Card.Body>
-                                    <Card.Title>
-                                        <img style={{ width: '100px', height: '100px' }} src="/deposit.png" alt="Deposit Icon" />
-                                    </Card.Title> <hr />
-                                    <Card.Text>
-                                        <div style={{ fontSize: '30px', fontWeight: 'bold' }}>
-                                            Deposit
-                                        </div>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Link>
-                    </Col>
-
-                    <Col sm={3}>
-                        <Link to="/witdarwal" style={{ textDecoration: "none" }}>
-                            <Card className='home-card' style={{ backgroundColor: '#808080', color: 'white' }}>
-                                <Card.Body>
-                                    <Card.Title>
-                                        <img style={{ width: '100px', height: '100px' }} src="/deposit.png" alt="Deposit Icon" />
-                                    </Card.Title> <hr />
-                                    <Card.Text>
-                                        <div style={{ fontSize: '30px', fontWeight: 'bold' }}>
-                                            Witdarwal
-                                        </div>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Link>
-                    </Col>
-
-                    <Col sm={3}>
-                        <Link to="/team" style={{ textDecoration: "none" }}>
-                            <Card className='home-card' style={{ backgroundColor: '#808080', color: 'white' }}>
-                                <Card.Body>
-                                    <Card.Title>
-                                        <img style={{ width: '100px', height: '100px' }} src="/deposit.png" alt="Deposit Icon" />
-                                    </Card.Title> <hr />
-                                    <Card.Text>
-                                        <div style={{ fontSize: '30px', fontWeight: 'bold' }}>
-                                            Team
-                                        </div>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Link>
-                    </Col>
-
-                    <Col sm={3}>
-                        <Link to="/invite" style={{ textDecoration: "none" }}>
-                            <Card className='home-card' style={{ backgroundColor: '#808080', color: 'white' }}>
-                                <Card.Body>
-                                    <Card.Title>
-                                        <img style={{ width: '100px', height: '100px' }} src="/deposit.png" alt="Deposit Icon" />
-                                    </Card.Title> <hr />
-                                    <Card.Text>
-                                        <div style={{ fontSize: '30px', fontWeight: 'bold' }}>
-                                            Invite Friends
-                                        </div>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Link>
-                    </Col>
-                </Row>
-            </div>
+          <div className="home-card">
+            <Link to="/invite" style={{ textDecoration: "none" }}>
+              <div className="card-content">
+                <FaShareSquare className="home-icons" />
+              </div>
+              <h5 className="text-white mt-1">Share</h5>
+            </Link>
+          </div>
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default HomeCards
+export default HomeCards;

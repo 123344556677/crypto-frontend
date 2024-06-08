@@ -4,9 +4,9 @@ import './index.css'
 
 const AuthorizedLayout = ({ children }) => {
     return (
-        <React.Fragment>
+        <div style={{backgroundColr:"black"}}>
             {children}
-        </React.Fragment>
+        </div>
     );
 }
 

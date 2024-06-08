@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Button } from "reactstrap";
+import { Navbar, Nav, NavItem, NavLink, Button } from "reactstrap";
 import "./Navbar.css";
 import { logOut, refreshPage } from "../../Common";
 import { getUser } from "../../Api/Api";
+import { IoIosRefresh,} from "react-icons/io";
 
 const CustomNavbar = () => {
   const id = localStorage.getItem('id');
@@ -20,15 +21,11 @@ const CustomNavbar = () => {
     fetchUserInfo();
   }, []);
   return (
-    <Navbar color="light" light expand="md">
-      {
-        // <NavbarBrand href="/">Your Logo</NavbarBrand>
-      }
+    <Navbar color="dark" light expand="md">
       <Nav className="mr-auto" navbar>
         <NavItem>
           <NavLink>
-            <h3>{userData?.fname} {userData?.lname}</h3>
-
+            <h3 className="text-white">{userData?.fname} {userData?.lname}</h3>
           </NavLink>
         </NavItem>
       </Nav>
@@ -36,16 +33,14 @@ const CustomNavbar = () => {
         <NavItem>
           <NavLink>
           <div className="d-flex mt-2">
-            <h5 className="mr-2">${userData?.balance}</h5>
-            <Button variant="primary" size="sm" onClick={refreshPage}>
-              Refresh
-            </Button>
+            <h4 className="mr-2" style={{color:"rgb(176, 159, 65)"}}>${userData?.balance}</h4>
+            <IoIosRefresh className="refresh-icon" onClick={refreshPage}/>
             </div>
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink onClick={logOut}>
-            <Button variant="dark" size="lg">
+            <Button outline size="lg" className="">
               Logout
             </Button>
           </NavLink>

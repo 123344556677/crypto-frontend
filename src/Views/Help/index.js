@@ -17,12 +17,12 @@ const Help = () => {
         </Col>
 
         <Col>
-          <img src="/service_top_right.png" />
+          <img src="/service_top_right.png" alt="service-img" />
         </Col>
       </Row>
 
       <div>
-        <a target="_blank" href="https://wa.link/65lqxr">
+        <a  href="https://wa.me/447521609944?text=can you guide me?">
           <Card style={{ marginTop: "5rem", marginBottom: "3rem" }}>
             <Card.Body>
               <Card.Text>
@@ -36,7 +36,30 @@ const Help = () => {
                   </Col>
 
                   <Col className="mt-2">
-                    <div style={{ fontSize: "50px" }}>Online Service</div>
+                    <div style={{ fontSize: "50px" }}>Gracie Hill</div>
+                  </Col>
+                </Row>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </a>
+      </div>
+      <div>
+        <a  href="https://wa.me/447417485083?text=can you guide me?">
+          <Card style={{ marginTop: "5rem", marginBottom: "3rem" }}>
+            <Card.Body>
+              <Card.Text>
+                <Row>
+                  <Col>
+                    <img
+                      style={{ marginLeft: "5rem" }}
+                      src="/service.png"
+                      alt="Service"
+                    />
+                  </Col>
+
+                  <Col className="mt-2">
+                    <div style={{ fontSize: "50px" }}>Islaa</div>
                   </Col>
                 </Row>
               </Card.Text>

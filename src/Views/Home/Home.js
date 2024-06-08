@@ -1,7 +1,5 @@
-import React, { useState} from "react";
-import {
-  Container,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Container } from "react-bootstrap";
 
 import "./Home.css";
 
@@ -17,32 +15,31 @@ const Home = () => {
 
   const [annoucements, setAnnoucements] = useState({});
 
-
   const handleCloseModal = () => setShowModal(false);
 
   return (
     <>
       <CustomNavbar />
+      <div className="main-div">
 
-        <HomeCards />
+      <HomeCards />
 
-        
-
-        {/* Modal */}
-        {
-          // <Modal show={showModal} onHide={handleCloseModal}>
-          //     <Modal.Header closeButton>
-          //         <Modal.Title className="text-center"> Annoucement </Modal.Title>
-          //     </Modal.Header>
-          //     <Modal.Body>
-          //         {/* Modal content */}
-          //         <p>
-          //             {annoucements.announcement}
-          //         </p>
-          //     </Modal.Body>
-          // </Modal>
-        }
-      <BottomBar/>
+      {/* Modal */}
+      {
+        // <Modal show={showModal} onHide={handleCloseModal}>
+        //     <Modal.Header closeButton>
+        //         <Modal.Title className="text-center"> Annoucement </Modal.Title>
+        //     </Modal.Header>
+        //     <Modal.Body>
+        //         {/* Modal content */}
+        //         <p>
+        //             {annoucements.announcement}
+        //         </p>
+        //     </Modal.Body>
+        // </Modal>
+      }
+        <BottomBar/>
+        </div>
     </>
   );
 };

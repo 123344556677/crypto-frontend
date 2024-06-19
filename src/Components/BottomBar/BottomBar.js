@@ -17,20 +17,22 @@ const BottomBar = () => {
           <span>Home</span>
         </NavLink>
       </NavItem>
-      <NavItem className="bottom-bar-item">
-        <NavLink href="#about" className="bottom-bar-link">
-          <FaChartPie className="bottom-bar-icons" />
-          <br />
-          <span>Quantity</span>
-        </NavLink>
-      </NavItem>
-      <NavItem className="bottom-bar-item">
-        <NavLink href="#about" className="bottom-bar-link">
-          <MdOutlineBarChart className="bottom-bar-icons" />
-          <br />
-          <span>Quantity</span>
-        </NavLink>
-      </NavItem>
+      {
+      // <NavItem className="bottom-bar-item">
+      //   <NavLink href="#about" className="bottom-bar-link">
+      //     <FaChartPie className="bottom-bar-icons" />
+      //     <br />
+      //     <span>Quantity</span>
+      //   </NavLink>
+      // </NavItem>
+      // <NavItem className="bottom-bar-item">
+      //   <NavLink href="#about" className="bottom-bar-link">
+      //     <MdOutlineBarChart className="bottom-bar-icons" />
+      //     <br />
+      //     <span>Quantity</span>
+      //   </NavLink>
+      // </NavItem>
+      }
       <NavItem className="bottom-bar-item">
         <NavLink href="/help" className="bottom-bar-link">
           <MdOutlineSupportAgent className="bottom-bar-icons" />
@@ -39,7 +41,7 @@ const BottomBar = () => {
         </NavLink>
       </NavItem>
       <NavItem className="bottom-bar-item">
-        <NavLink href="#contact" className="mr-3 bottom-bar-link">
+        <NavLink href="/profile" className="mr-3 bottom-bar-link">
           <CgProfile className="bottom-bar-icons" />
           <br />
           <span>Profile</span>

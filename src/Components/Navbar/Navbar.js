@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, NavItem, NavLink, Button } from "reactstrap";
 import "./Navbar.css";
-import { logOut, refreshPage } from "../../Common";
+import { logOut, refreshPage, roundToOneDecimal } from "../../Common";
 import { getUser } from "../../Api/Api";
 import { IoIosRefresh,} from "react-icons/io";
 
@@ -33,7 +33,7 @@ const CustomNavbar = () => {
         <NavItem>
           <NavLink>
           <div className="d-flex mt-2">
-            <h4 className="mr-2" style={{color:"rgb(176, 159, 65)"}}>${userData?.balance}</h4>
+            <h4 className="mr-2" style={{color:"rgb(176, 159, 65)"}}>${roundToOneDecimal(userData?.balance)}</h4>
             <IoIosRefresh className="refresh-icon" onClick={refreshPage}/>
             </div>
           </NavLink>

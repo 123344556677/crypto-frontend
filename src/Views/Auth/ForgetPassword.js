@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import "./auth.css";
 import { Col, Row } from "reactstrap";
 import { checkOTP, sendOTP, updatePassword } from "../../Api/Api";
 import { errorAlert, successAlert } from "../../Components/Alerts/Alerts";
-import { setLocalStorage } from "../../Common";
-import { GiToken } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 
 const ForgetPassword = () => {
@@ -63,10 +61,8 @@ const ForgetPassword = () => {
   };
   return (
     <div className="main-div">
-      <Row className="justify-content-center mt-4">
+      <Row className="justify-content-center mt-5">
         <Col xl={4}>
-          <Card className="auth-cards">
-            <Card.Title>
               <div className="d-flex justify-content-center">
                 <img
                   className="logo"
@@ -74,12 +70,11 @@ const ForgetPassword = () => {
                   alt="Logo"
                 />
               </div>
-              <h3 className="text-center"> Forgot Password</h3>
+              <h3 className="text-center mt-2"> Forgot Password</h3>
               <p className="login-text mt-2 text-center">
                 We will send code to your email!
               </p>
-            </Card.Title>
-            <Card.Body style={{ padding: "29px 50px" }}>
+              <hr/>
               <Form onSubmit={submit}>
                 {checkCondition === "email" && (
                   <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -140,8 +135,6 @@ const ForgetPassword = () => {
                     : "Change Password"}
                 </Button>
               </Form>
-            </Card.Body>
-          </Card>
         </Col>
       </Row>
     </div>

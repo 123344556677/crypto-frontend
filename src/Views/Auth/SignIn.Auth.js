@@ -37,7 +37,7 @@ const Signin = () => {
     <div className="main-div">
       <Row className="w-100 justify-content-center mt-5">
         <Col xl={7} md={12} sm={12} className="">
-          <img src="/az-1.avif" alt="login-pic" className="login-img mt-4" />
+          <img src="/az-4.jpg" alt="login-pic" className="login-img mt-4" />
         </Col>
         <Col xl={5} md={12} sm={12}>
           <div className="d-flex justify-content-center">

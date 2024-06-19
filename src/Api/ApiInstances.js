@@ -9,7 +9,7 @@ const fileInstance = () => {
 
   const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL, 
-    timeout: 10000,
+    timeout: 50000,
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'multipart/form-data',

@@ -27,14 +27,21 @@ const HomeCards = () => {
           <Carousel.Item>
             <img
               style={{ width: "100%", height: "400px" }}
-              src="/az-2.jpeg"
+              src="/az-5.jpeg"
               alt="banner"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               style={{ width: "100%", height: "400px" }}
-              src="/az-3.jpeg"
+              src="/az-6.jpeg"
+              alt="banner"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              style={{ width: "100%", height: "400px" }}
+              src="/az-7.png"
               alt="banner"
             />
           </Carousel.Item>

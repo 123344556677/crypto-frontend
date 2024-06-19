@@ -11,7 +11,7 @@ export const login = (values) => {
   return api.post('/user/login', values);
 };
 export const register = (values) => {
-  return file.post('/user/signup', values);
+  return api.post('/user/signup2', values);
 };
 export const sendOTP = (values) => {
   return api.post('/user/forgetPassword/sendOtpToEmail', values);
@@ -45,9 +45,13 @@ export const getUser = (id) => {
   return api.get(`/user/getUser/${id}`);
 };
 
+export const updateUserInfo= (values) => {
+  return api.patch('/user/updateInformation',values);
+};
+
 //transaction
 export const cashDeposit = (values) => {
-  return file.post('/transaction/createCashDeposit', values);
+  return api.post('/transaction/createCashDeposit', values);
 };
 export const checkWallet = (values) => {
   return api.post('/transaction/checkWalletAddress', values);
@@ -57,4 +61,18 @@ export const cashWithdrawal= (values) => {
 };
 export const getAdminWallet = () => {
   return api.get('/transaction/getAdminWalletAddress');
+};
+
+//team
+export const getTeamData = () => {
+  return api.get('/team/getTeamData');
+};
+export const getReferalCode = () => {
+  return api.get('/team/getMyReferral');
+};
+export const getTeamUsers = () => {
+  return api.get('/team/getTeamPeople');
+};
+export const getTeamContribution = () => {
+  return api.get('/team/getTeamContribution');
 };

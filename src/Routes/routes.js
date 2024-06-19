@@ -14,12 +14,11 @@ import Aboutus from "../Views/Aboutus"
 
 import Help from "../Views/Help"
 
-import Account from "../Views/Profile"
-
 import Invite from "../Views/Invite/Invite"
 
 import Team from "../Views/Team/team"
 import ForgetPassword from "../Views/Auth/ForgetPassword"
+import Profile from "../Views/Profile/Profile"
 
 const routes =[
     
@@ -39,7 +38,7 @@ const routes =[
 
     {path:'/help', element:<Help />, exact:'true', type:'public' },
 
-    {path:'/profile', element:<Account />, exact:'true', type:'public' },
+    {path:'/profile', element:<Profile/>, exact:'true', type:'public' },
 
     {path:'/invite', element:<Invite />, exact:'true', type:'public' },
 

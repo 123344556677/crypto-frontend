@@ -9,21 +9,24 @@ import { GET } from "../../apicontroller/ApiController";
 import ProfileWitdarwal from "./WallAddress.profile";
 import PWitdarwal from "./Witdarwal.profile";
 import { Button, Col, Form, Input, Row } from "reactstrap";
-import { getUser, updateUserInfo } from "../../Api/Api";
+import { getTransactionHistory, getUser, updateUserInfo } from "../../Api/Api";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { errorAlert, successAlert } from "../../Components/Alerts/Alerts";
+import moment from "moment";
 
 const Profile = () => {
   const id = localStorage.getItem("id");
   const [userData, setUserData] = useState();
   const [changedFields, setChangedFields] = useState({});
+  const [cashDeposit, setCashDeposit] = useState();
+  const [cashWithdrawal, setCashWithrawal] = useState();
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
     email: "",
     walletAddress: "",
-    fundPassword:""
+    fundPassword: "",
   });
   const navigate = useNavigate();
   useEffect(() => {
@@ -36,8 +39,19 @@ const Profile = () => {
         console.error("Error fetching approved cash deposits:", error);
       }
     };
+    const fetchTransactionHistory = async () => {
+      try {
+        const response = await getTransactionHistory();
+        setCashDeposit(response?.data?.cashDeposit);
+        setCashWithrawal(response?.data?.cashWithdrawal);
+        console.log(response, "history reeposne----->");
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
 
     fetchUserInfo();
+    fetchTransactionHistory();
   }, []);
 
   const handleChange = (e) => {
@@ -71,100 +85,136 @@ const Profile = () => {
   };
   return (
     <div className="main-div">
+      <br />
       <span className="back-icon" onClick={() => navigate("/Home")}>
         <IoMdArrowBack />
       </span>
-      <Row className="justify-content-center">
-        <Col xl={5} md={12} sm={12}>
-          <div className="d-flex justify-content-center">
-            <img
-              className="logo mt-3"
-              src="/Family Loan Insurance Logo.png"
-              alt="Logo"
-            />
-          </div>
-          <h2 className="text-center text-white mt-2">Profile</h2>
-          <p className="login-text mt-2 text-center">
-            Update Your Information!
-          </p>
-          <hr />
-          <Form onSubmit={submit}>
-            <Input
-              type="text"
-              name="fname"
-              placeholder="first name"
-              className="mt-3 login-inputs"
-              defaultValue={formData.fname || userData?.fname}
+      <div className="ml-3">
+        <Row className="justify-content-center no-gutters w-100">
+          <Col xl={12} md={12} sm={12}>
+            <div className="d-flex justify-content-center">
+              <img
+                className="logo mt-3"
+                src="/Family Loan Insurance Logo.png"
+                alt="Logo"
+              />
+            </div>
+            <h2 className="text-center text-white mt-2">Profile</h2>
+            <p className="login-text mt-2 text-center">
+              Update Your Information!
+            </p>
+            <hr />
+            <Form onSubmit={submit}>
+              <Input
+                type="text"
+                name="fname"
+                placeholder="first name"
+                className="mt-3 login-inputs"
+                defaultValue={formData.fname || userData?.fname}
                 onChange={handleChange}
-              required
-            />
-            <Input
-              type="text"
-              name="lname"
-              placeholder="last name"
-              className="mt-3 login-inputs"
-              defaultValue={formData.lname || userData?.lname}
+                required
+              />
+              <Input
+                type="text"
+                name="lname"
+                placeholder="last name"
+                className="mt-3 login-inputs"
+                defaultValue={formData.lname || userData?.lname}
                 onChange={handleChange}
-              required
-            />
-            <Input
-              name="email"
-              type="email"
-              placeholder="Email"
-              className="mt-3 login-inputs"
-              defaultValue={formData.email || userData?.email}
+                required
+              />
+              <Input
+                name="email"
+                type="email"
+                placeholder="Email"
+                className="mt-3 login-inputs"
+                defaultValue={formData.email || userData?.email}
                 onChange={handleChange}
-              required
-            />
-            <Input
-              defaultValue={formData.walletAddress || userData?.walletAddress}
-              type="text"
-              name="walletAddress"
-              placeholder="wallet address"
-              className="mt-3 login-inputs"
+                required
+              />
+              <Input
+                defaultValue={formData.walletAddress || userData?.walletAddress}
+                type="text"
+                name="walletAddress"
+                placeholder="wallet address"
+                className="mt-3 login-inputs"
                 onChange={handleChange}
-              required
-            />
-            <Input
-              defaultValue={formData.fundPassword}
-              type="text"
-              name="fundPassword"
-              placeholder="fund password"
-              className="mt-3 login-inputs"
-            onChange={handleChange}
-              required
-            />
-            <Button
-              type="submit"
-              className="border-0 w-100 mt-3 auth-button mb-5"
-            >
-              Update
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-      {
-        // <Table striped bordered hover>
-        //     <thead>
-        //         <tr>
-        //             <th>#</th>
-        //             <th> Date </th>
-        //             <th> Deposit Amount </th>
-        //             <th> Total Amount </th>
-        //         </tr>
-        //     </thead>
-        //     <tbody>
-        //         {recharge && recharge.map((recharges) => (
-        //             <tr>
-        //                 <td> {recharges.id} </td>
-        //                 <td> {recharges.created_at.split(' ')[0]} </td>
-        //                 <td> {recharges.deposit} </td>
-        //                 <td> {recharges.total} </td>
-        //             </tr>
-        //         ))}
-        //     </tbody>
-        // </Table>
-      }
+                required
+              />
+              <Input
+                defaultValue={formData.fundPassword}
+                type="text"
+                name="fundPassword"
+                placeholder="fund password"
+                className="mt-3 login-inputs"
+                onChange={handleChange}
+                required
+              />
+              <Button
+                type="submit"
+                className="border-0 w-100 mt-3 auth-button mb-5"
+              >
+                Update
+              </Button>
+            </Form>
+            <hr />
+            <h2>Cash Deposits</h2>
+            <Table striped className="mt-2" responsive>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th> Transaction Number </th>
+                  <th> Amount</th>
+                  <th> Status</th>
+                  <th> Date </th>
+                </tr>
+              </thead>
+              <tbody>
+                {cashDeposit?.map((data, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{data?.transactionNumber}</td>
+                    <td>{data?.amount}</td>
+                    <td>{data?.status}</td>
+                    <td>
+                      {moment(data?.registrationTime).format(
+                        "MMMM Do YYYY, h:mm:ss a"
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+            <h2 className="mt-2">Cash Withdrawal</h2>
+            <Table striped className="mt-2" responsive>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th> Wallet Address </th>
+                  <th> Amount</th>
+                  <th> Status</th>
+                  <th> Date </th>
+                </tr>
+              </thead>
+              <tbody>
+                {cashWithdrawal?.map((data, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{data?.walletAddress}</td>
+                    <td>{data?.amount}</td>
+                    <td>{data?.status}</td>
+                    <td>
+                      {moment(data?.registrationTime).format(
+                        "MMMM Do YYYY, h:mm:ss a"
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-.bottom-bar {
+/* .bottom-bar {
   display: block;
   width: 100%;
   border-radius:50px 50px 0 0 ;
@@ -25,4 +25,26 @@
 .bottom-bar-icons{
     font-size: 20px;
 
+} */
+.bottom-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between!important;
+  border-radius:50px 50px 0 0 ;
+  list-style: none!important;
+}
+
+
+
+.bottom-bar-link {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  text-decoration: none;
+  color: #fff; /* adjust color as needed */
+}
+
+.bottom-bar-icons {
+  font-size: 24px; /* adjust icon size as needed */
+  margin-bottom: 0.5rem; /* adjust margin as needed */
 }

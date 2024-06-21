@@ -1,5 +1,6 @@
 import storage from "./Api/firebase";
 import { getStorage, ref, uploadBytes,uploadString, getDownloadURL } from "firebase/storage";
+import { successAlert } from "./Components/Alerts/Alerts";
 
 export const setLocalStorage = (key, value) => {
   return new Promise((resolve, reject) => {
@@ -87,4 +88,8 @@ export const uploadImageToFirebase = async (base64Video) => {
     console.error("Error uploading image to Firebase:", error);
     throw error; // Optionally re-throw the error for handling elsewhere
   }
+};
+
+export const copyText = (text) => {
+     navigator.clipboard.writeText(text).then(() => successAlert('Copied to clipboard')).catch(err => console.error('Could not copy to clipboard', err));
 };

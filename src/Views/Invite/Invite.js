@@ -7,6 +7,8 @@ import { getReferalCode } from "../../Api/Api";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
+import { FaCopy } from "react-icons/fa";
+import { copyText } from "../../Common";
 
 const Invite = () => {
   const [referralCode, setReferalCode] = useState();
@@ -16,7 +18,7 @@ const Invite = () => {
     const fetchReferalCode = async () => {
       try {
         const response = await getReferalCode();
-        setReferalCode(response?.data?.myReferral);
+        setReferalCode(response?.data?.referralLink);
       } catch (error) {
         console.error("Error fetching team:", error);
       }
@@ -26,11 +28,13 @@ const Invite = () => {
 
   return (
     <div className="main-div">
+    <br/>
       <span className="back-icon" onClick={() => navigate("/Home")}>
         <IoMdArrowBack />
       </span>
-      <Row className="w-100 justify-content-center mt-5">
-        <Col xl={6}>
+      <div className="ml-3">
+      <Row className="w-100 justify-content-center mt-5 no-gutters">
+        <Col xl={12} md={12} sm={12}>
           <div className="d-flex justify-content-center">
             <img
               className="logo mt-3"
@@ -45,19 +49,21 @@ const Invite = () => {
           <hr />
           <Row className="mt-5 mb-2">
             <Col className="">
-              <h3 className="">Your Referral Code</h3>
+              <h3 className="">Your Referral Link</h3>
             </Col>
             <Col className="">
               <h3
-                className="text-center"
+                className="text-right"
                 style={{ color: "rgb(176, 159, 65)" }}
               >
                 {referralCode}
+                <span className="ml-3" onClick={()=>copyText(referralCode)}><FaCopy style={{cursor:"pointer"}}/></span>
               </h3>
             </Col>
           </Row>
         </Col>
       </Row>
+      </div>
     </div>
   );
 };

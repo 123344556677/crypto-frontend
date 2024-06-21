@@ -35,11 +35,15 @@ const Signin = () => {
 
   return (
     <div className="main-div">
-      <Row className="w-100 justify-content-center mt-5">
-        <Col xl={7} md={12} sm={12} className="">
-          <img src="/az-4.jpg" alt="login-pic" className="login-img mt-4" />
-        </Col>
-        <Col xl={5} md={12} sm={12}>
+    <br/>
+    <div className="ml-3">
+      <Row className="w-100 justify-content-center  no-gutters mt-5">
+      {
+        // <Col xl={7} md={12} sm={12} className="">
+        //   <img src="/az-4.jpg" alt="login-pic" className="login-img mt-4" />
+        // </Col>
+      }
+        <Col xl={12} md={12} sm={12}>
           <div className="d-flex justify-content-center">
             <img
               className="logo mt-3"
@@ -96,6 +100,7 @@ const Signin = () => {
           </p>
         </Col>
       </Row>
+      </div>
     </div>
   );
 };

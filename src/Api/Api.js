@@ -62,6 +62,9 @@ export const cashWithdrawal= (values) => {
 export const getAdminWallet = () => {
   return api.get('/transaction/getAdminWalletAddress');
 };
+export const getTransactionHistory = () => {
+  return api.get('/transaction/getHistory');
+};
 
 //team
 export const getTeamData = () => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import "./auth.css";
 import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate,} from "react-router-dom";
 import { register } from "../../Api/Api";
 import { errorAlert, successAlert } from "../../Components/Alerts/Alerts";
 import {
@@ -14,18 +14,21 @@ import {
 
 const Signup = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [checkAnimation, setCheckAnimation] = useState(false);
+  const referral = new URLSearchParams(location.search).get('referral');
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
     email: "",
     password: "",
     confirmPassword: "",
-    referralCode: "",
+    referralCode:referral|| "",
     fronId: null,
     backId: null,
     fundPassword: "",
   });
+  
 
   const [validations, setValidations] = useState({
     length: false,
@@ -182,11 +185,13 @@ const Signup = () => {
   };
   return (
     <div className="main-div">
+    <br/>
       {checkAnimation ? (
         WaitingAnimation()
       ) : (
-        <Row className="justify-content-center">
-          <Col xl={8}>
+        <div className="ml-3">
+        <Row className="justify-content-center no-gutters w-100">
+          <Col xl={12} sm={12} md={12}>
             <div className="d-flex justify-content-center">
               <img
                 className="logo"
@@ -376,6 +381,7 @@ const Signup = () => {
             </Form>
           </Col>
         </Row>
+        </div>
       )}
     </div>
   );

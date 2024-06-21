@@ -103,7 +103,7 @@ const Team = () => {
               </div>
             </div>
 
-            <Table striped>
+            <Table striped responsive>
               <thead>
                 <tr>
                   <th>#</th>
@@ -149,7 +149,7 @@ const Team = () => {
                 </div>
               </div>
             </div>
-            <Table striped bordered hover>
+            <Table striped bordered hover responsive>
               <thead>
                 <tr>
                   <th>#</th>

@@ -65,7 +65,8 @@ const ForgetPassword = () => {
       <span className="back-icon" onClick={() => navigate("/")}>
         <IoMdArrowBack />
       </span>
-        <Row className="justify-content-center mt-5">
+      <div className="ml-3">
+        <Row className="w-100 justify-content-center mt-5 no-gutters">
           <Col xl={12}>
             <div className="d-flex justify-content-center">
               <img
@@ -141,6 +142,7 @@ const ForgetPassword = () => {
             </Form>
           </Col>
         </Row>
+      </div>
     </div>
   );
 };

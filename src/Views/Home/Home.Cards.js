@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import {
-  Carousel,
-} from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 
 import "./Home.css";
 
@@ -10,41 +8,59 @@ import { Link } from "react-router-dom";
 import { PiHandDepositFill, PiHandWithdrawFill } from "react-icons/pi";
 import { RiTeamFill } from "react-icons/ri";
 import { FaShareSquare } from "react-icons/fa";
+import { getSliderImages } from "../../Api/Api";
 
 const HomeCards = () => {
+  const [sliderImages, setSliderImages] = useState();
+  useEffect(() => {
+    const fetchSliderImage = async () => {
+      try {
+        const response = await getSliderImages();
+        setSliderImages(response?.data?.existingImage[0]?.images);
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
+
+    fetchSliderImage();
+  }, []);
+
   return (
     <div>
       <div>
         <Carousel className="">
-          <Carousel.Item>
-            <img
-              style={{ width: "100%", height: "400px" }}
-              src="/image 2.png"
-              alt="banner"
-            />
-          </Carousel.Item>
-
-          <Carousel.Item>
-            <img
-              style={{ width: "100%", height: "400px" }}
-              src="/az-5.jpeg"
-              alt="banner"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={{ width: "100%", height: "400px" }}
-              src="/az-6.jpeg"
-              alt="banner"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              style={{ width: "100%", height: "400px" }}
-              src="/az-7.png"
-              alt="banner"
-            />
-          </Carousel.Item>
+          {sliderImages?.map((data, index) => (
+            <Carousel.Item key={index}>
+              <img
+                style={{ width: "100%", height: "400px" }}
+                src={data?.image}
+                alt="banner"
+              />
+            </Carousel.Item>
+          ))}
+          {
+            // <Carousel.Item>
+            //   <img
+            //     style={{ width: "100%", height: "400px" }}
+            //     src="/az-5.jpeg"
+            //     alt="banner"
+            //   />
+            // </Carousel.Item>
+            // <Carousel.Item>
+            //   <img
+            //     style={{ width: "100%", height: "400px" }}
+            //     src="/az-6.jpeg"
+            //     alt="banner"
+            //   />
+            // </Carousel.Item>
+            // <Carousel.Item>
+            //   <img
+            //     style={{ width: "100%", height: "400px" }}
+            //     src="/az-7.png"
+            //     alt="banner"
+            //   />
+            // </Carousel.Item>
+          }
         </Carousel>
       </div>
 

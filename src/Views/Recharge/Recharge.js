@@ -6,7 +6,11 @@ import { cashDeposit, getAdminWallet, getUser } from "../../Api/Api";
 import { errorAlert, successAlert } from "../../Components/Alerts/Alerts";
 import "./Recharge.css";
 import { IoMdArrowBack } from "react-icons/io";
-import { MAX_FILE_SIZE, WaitingAnimation, toBase64, uploadImageToFirebase } from "../../Common";
+import {
+  WaitingAnimation,
+  toBase64,
+  uploadImageToFirebase,
+} from "../../Common";
 
 const Recharge = () => {
   const navigate = useNavigate();
@@ -110,6 +114,7 @@ const Recharge = () => {
 
   return (
     <div className="main-div">
+      <br />
       {checkAnimation ? (
         WaitingAnimation()
       ) : (
@@ -117,128 +122,131 @@ const Recharge = () => {
           <span className="back-icon" onClick={() => navigate("/Home")}>
             <IoMdArrowBack />
           </span>
-          <Row className="w-100 justify-content-center mt-5">
-            <Col xl={5}>
-              <div className="d-flex justify-content-center">
-                <img
-                  className="logo mt-3"
-                  src="/Family Loan Insurance Logo.png"
-                  alt="Logo"
-                />
-              </div>
-              <h2 className="text-center text-white mt-2"> Recharge</h2>
-              <p className="login-text mt-2 text-center">
-                Add balance to your account!
-              </p>
-              {checkCondition === "recharge" && (
-                <>
-                  <Row className="mt-5 mb-2">
-                    <Col className="">
-                      <h3>Current Balance</h3>
-                    </Col>
-                    <Col
-                      className="text-center"
-                      style={{ color: "rgb(176, 159, 65)" }}
-                    >
-                      <h3>${userData?.balance}</h3>
-                    </Col>
-                    <hr />
-                  </Row>
-
-                  <Form onSubmit={submit}>
-                    <Form.Group className="" controlId="formBasicEmail">
-                      <h5>Recharge</h5>
-                      <Form.Control
-                        type="number"
-                        placeholder="Enter amount for recharge"
-                        className="login-inputs mt-3 mb-2"
-                        onChange={(e) => setDepositAmount(e.target.value)}
-                        required
-                      />
-                    </Form.Group>
-                    <Row className="mt-4 mb-2">
+          <div className="ml-3">
+            <Row className="w-100 no-gutters justify-content-center mt-5">
+              <Col xl={12} sm={12} md={12}>
+                <div className="d-flex justify-content-center">
+                  <img
+                    className="logo mt-3"
+                    src="/Family Loan Insurance Logo.png"
+                    alt="Logo"
+                  />
+                </div>
+                <h2 className="text-center text-white mt-2"> Recharge</h2>
+                <p className="login-text mt-2 text-center">
+                  Add balance to your account!
+                </p>
+                {checkCondition === "recharge" && (
+                  <>
+                    <Row className="mt-5 mb-2 w-100">
                       <Col className="">
-                        <h3>Recharge Type</h3>
+                        <h3>Current Balance</h3>
                       </Col>
                       <Col
-                        className="text-center"
+                        className="text-right"
                         style={{ color: "rgb(176, 159, 65)" }}
                       >
-                        <h3>USDT</h3>
+                        <h3>${userData?.balance}</h3>
                       </Col>
                       <hr />
                     </Row>
-                    <Button className="w-100 auth-button mt-3" type="submit">
-                      Tap to proceed
-                    </Button>
-                  </Form>
-                </>
-              )}
-              {checkCondition === "wallet" && (
-                <>
-                  <Row className="mt-4">
-                    <Col className="">
-                      <h5>Wallet Adress</h5>
-                    </Col>
 
-                    <Col className="">
-                      <h5>{adminWallet}</h5>
-                    </Col>
-                    <hr />
-                  </Row>
-                  <Form onSubmit={submit}>
-                    <Form.Group className="mt-2" controlId="formBasicEmail">
-                      <h5>Transaction Number</h5>
-                      <Form.Control
-                        type="number"
-                        placeholder="Transaction number"
-                        name="transactionNumber"
-                        className="login-inputs mt-3"
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Form.Group className="mt-4">
-                      <h5>Transaction Screenshot</h5>
-                      <div className="upload-box">
-                        <input
-                          accept="image/*"
-                          type="file"
-                          className="fs-6 form-control-file"
-                          name="TransactionImage"
+                    <Form onSubmit={submit}>
+                      <Form.Group className="" controlId="formBasicEmail">
+                        <h5>Recharge</h5>
+                        <Form.Control
+                          type="number"
+                          placeholder="Enter amount for recharge"
+                          className="login-inputs mt-3 mb-2"
+                          onChange={(e) => setDepositAmount(e.target.value)}
+                          required
+                        />
+                      </Form.Group>
+                      <Row className="mt-4 mb-2 w-100">
+                        <Col className="">
+                          <h3>Recharge Type</h3>
+                        </Col>
+                        <Col
+                          className="text-right"
+                          style={{ color: "rgb(176, 159, 65)" }}
+                        >
+                          <h3>USDT</h3>
+                        </Col>
+                        <hr />
+                      </Row>
+                      <Button className="w-100 auth-button mt-3" type="submit">
+                        Tap to proceed
+                      </Button>
+                    </Form>
+                  </>
+                )}
+                {checkCondition === "wallet" && (
+                  <>
+                    <Row className="mt-4 w-100">
+                      <Col className="">
+                        <h5>Wallet Adress</h5>
+                      </Col>
+
+                      <Col className="text-right">
+                        <h5>{adminWallet}</h5>
+                      </Col>
+                      <hr />
+                    </Row>
+                    <Form onSubmit={submit}>
+                      <Form.Group className="mt-2" controlId="formBasicEmail">
+                        <h5>Transaction Number</h5>
+                        <Form.Control
+                          type="number"
+                          placeholder="Transaction number"
+                          name="transactionNumber"
+                          className="login-inputs mt-3"
                           onChange={handleChange}
                           required
                         />
+                      </Form.Group>
+                      <Form.Group className="mt-4">
+                        <h5>Transaction Screenshot</h5>
+                        <div className="upload-box">
+                          <input
+                            accept="image/*"
+                            type="file"
+                            className="fs-6 form-control-file"
+                            name="TransactionImage"
+                            onChange={handleChange}
+                            required
+                          />
 
-                        <label className="upload-label">
-                          {selectedFiles.TransactionImage
-                            ? selectedFiles.TransactionImage
-                            : "Upload Image"}
-                          {selectedFiles.TransactionImage && " (Change Image)"}
-                        </label>
-                      </div>
-                    </Form.Group>
+                          <label className="upload-label">
+                            {selectedFiles.TransactionImage
+                              ? selectedFiles.TransactionImage
+                              : "Upload Image"}
+                            {selectedFiles.TransactionImage &&
+                              " (Change Image)"}
+                          </label>
+                        </div>
+                      </Form.Group>
 
-                    <h6 className="mt-3" style={{ color: "grey" }}>
-                      Note: $1 will be additional price for transaction
-                    </h6>
-                    <h4 className="mt-3">
-                      Total: {parseFloat(depositAmount) + 1}
-                    </h4>
+                      <h6 className="mt-3" style={{ color: "grey" }}>
+                        Note: $1 will be additional price for transaction
+                      </h6>
+                      <h4 className="mt-3">
+                        Total: {parseFloat(depositAmount) + 1}
+                      </h4>
 
-                    <Button
-                      onClick={submit}
-                      // onClick={handleChange}
-                      className="w-100 auth-button mt-3"
-                      type="submit"
-                    >
-                      Tap to recharge
-                    </Button>
-                  </Form>
-                </>
-              )}
-            </Col>
-          </Row>
+                      <Button
+                        onClick={submit}
+                        // onClick={handleChange}
+                        className="w-100 auth-button mt-3"
+                        type="submit"
+                      >
+                        Tap to recharge
+                      </Button>
+                    </Form>
+                  </>
+                )}
+              </Col>
+            </Row>
+          </div>
         </>
       )}
     </div>

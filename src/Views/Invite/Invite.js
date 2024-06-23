@@ -48,10 +48,10 @@ const Invite = () => {
           </p>
           <hr />
           <Row className="mt-5 mb-2">
-            <Col className="">
+            <Col className="" xl={6}>
               <h3 className="">Your Referral Link</h3>
             </Col>
-            <Col className="">
+            <Col className="" style={{ wordBreak: "break-all" }} xl={6}>
               <h3
                 className="text-right"
                 style={{ color: "rgb(176, 159, 65)" }}

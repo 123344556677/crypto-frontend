@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Container } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 import "./index.css";
-
-import { GET } from "../../apicontroller/ApiController";
-
-import ProfileWitdarwal from "./WallAddress.profile";
-import PWitdarwal from "./Witdarwal.profile";
 import { Button, Col, Form, Input, Row } from "reactstrap";
-import { getTransactionHistory, getUser, updateUserInfo } from "../../Api/Api";
+import {
+  getTransactionHistory,
+  getUser,
+  getUserLevel,
+  updateUserInfo,
+} from "../../Api/Api";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { errorAlert, successAlert } from "../../Components/Alerts/Alerts";
@@ -21,6 +21,7 @@ const Profile = () => {
   const [changedFields, setChangedFields] = useState({});
   const [cashDeposit, setCashDeposit] = useState();
   const [cashWithdrawal, setCashWithrawal] = useState();
+  const [userLevel, setUserLevel] = useState();
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -34,7 +35,6 @@ const Profile = () => {
       try {
         const response = await getUser(id);
         setUserData(response?.data?.user);
-        console.log(response, "user reeposne----->");
       } catch (error) {
         console.error("Error fetching approved cash deposits:", error);
       }
@@ -44,7 +44,14 @@ const Profile = () => {
         const response = await getTransactionHistory();
         setCashDeposit(response?.data?.cashDeposit);
         setCashWithrawal(response?.data?.cashWithdrawal);
-        console.log(response, "history reeposne----->");
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
+    const fetchUserLevel = async () => {
+      try {
+        const response = await getUserLevel();
+        setUserLevel(response?.data?.level);
       } catch (error) {
         console.error("Error fetching approved cash deposits:", error);
       }
@@ -52,6 +59,7 @@ const Profile = () => {
 
     fetchUserInfo();
     fetchTransactionHistory();
+    fetchUserLevel();
   }, []);
 
   const handleChange = (e) => {
@@ -99,10 +107,13 @@ const Profile = () => {
                 alt="Logo"
               />
             </div>
-            <h2 className="text-center text-white mt-2">Profile</h2>
-            <p className="login-text mt-2 text-center">
-              Update Your Information!
-            </p>
+            <h2 className="text-center text-white mt-2">
+              {userData?.fname} {userData?.lname}
+            </h2>
+            <h5 className="mt-2 text-center">
+              Level:{" "}
+              <span style={{ color: "rgb(176, 159, 65)" }}>{userLevel}</span>
+            </h5>
             <hr />
             <Form onSubmit={submit}>
               <Input

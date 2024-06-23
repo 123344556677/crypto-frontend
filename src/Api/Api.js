@@ -65,6 +65,9 @@ export const getAdminWallet = () => {
 export const getTransactionHistory = () => {
   return api.get('/transaction/getHistory');
 };
+export const getUserLevel = () => {
+  return api.get('/transaction/getLevel');
+};
 
 //team
 export const getTeamData = () => {
@@ -78,4 +81,12 @@ export const getTeamUsers = () => {
 };
 export const getTeamContribution = () => {
   return api.get('/team/getTeamContribution');
+};
+
+//settings
+export const getSliderImages= () => {
+  return api.get('/admin/getImageSlider');
+};
+export const getAbout= () => {
+  return api.get('/admin/getAbout');
 };

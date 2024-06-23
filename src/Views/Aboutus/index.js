@@ -1,81 +1,50 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Row, Col } from "react-bootstrap";
 import "./index.css";
+import { IoMdArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { getAbout } from "../../Api/Api";
 
 const Aboutus = () => {
+  const navigate = useNavigate();
+  const [about, setAbout] = useState("");
+  useEffect(() => {
+    const fetchAbout = async () => {
+      try {
+        const response = await getAbout();
+        setAbout(response?.data?.about?.content);
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
+    fetchAbout();
+  }, []);
   return (
-    <Container>
-      <h2 className="mt-5">Affiliate Program</h2>
-
-      <Row>
-        <Col>
-          <div className="affiliate-head">
-            Do you know somebody that may benefit from using our dispatch service?
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <div className="affiliate-text">
-            All referrals are paid $10/week for the lifetime of the referral. Just what you read!
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <div className="affiliate-head">
-            How it works:
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <div className="affiliate-text">
-            1: You send us a client and every week that they use our service, we send you $10. The $10’s keep coming for as long as the client uses our service. <br />
-            2: Yes, you can refer as many clients as you want! There is no limit on the number of referrals. <br />
-            3: Make sure you let us know or have your client tell us that you sent them so that we can send you your $10.
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <div className="affiliate-head">
-            The Tiny Print (We like our tiny print huge!)
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <div className="affiliate-text">
-            1: The client must generate $5,000 gross revenue in the billing cycle to be eligible <br />
-            2: We must receive a W9 from you before we pay out <br />
-            3: We pay out weekly, every Friday.
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <div className="affiliate-head">
-            That’s all!
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <div className="affiliate-text">
-            Please sign our affiliate form and consider it a done deal!
-          </div>
-        </Col>
-      </Row>
-
-    </Container>
+    <div className="main-div">
+      <br />
+      <span className="back-icon" onClick={() => navigate("/Home")}>
+        <IoMdArrowBack />
+      </span>
+      <div className="ml-3">
+        <Row className="w-100 no-gutters justify-content-center mt-5">
+          <Col xl={12} sm={12} md={12}>
+            <div className="d-flex justify-content-center">
+              <img
+                className="logo mt-3"
+                src="/Family Loan Insurance Logo.png"
+                alt="Logo"
+              />
+            </div>
+            <h2 className="text-center text-white mt-2">About Us</h2>
+            <p className="login-text mt-2 text-center">
+              Get to know about our company!
+            </p>
+            <hr/>
+            <h5 className="text-center">{about}</h5>
+          </Col>
+        </Row>
+      </div>
+    </div>
   );
 };
 

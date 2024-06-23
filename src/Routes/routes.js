@@ -34,7 +34,7 @@ const routes =[
     {path:'/addwallet', element:<AddWallet />, exact:'true', type:'public' },
     {path:'/withdrawal', element:<Witdarwal />, exact:'true', type:'public' },
 
-    {path:'/aboutus', element:<Aboutus />, exact:'true', type:'public' },
+    {path:'/aboutUs', element:<Aboutus />, exact:'true', type:'public' },
 
     {path:'/help', element:<Help />, exact:'true', type:'public' },
 

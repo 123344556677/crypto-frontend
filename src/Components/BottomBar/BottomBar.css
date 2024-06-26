@@ -47,7 +47,7 @@
 .bottom-bar-icons {
   font-size: 24px; /* adjust icon size as needed */
 }
-@media (max-width: 280px) {
+@media (max-width: 310px) {
   .link-text {
     display: none;
   }

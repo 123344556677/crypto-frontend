@@ -94,14 +94,14 @@
 .home-card {
   flex: 1 1 calc(25% - 20px);
   box-sizing: border-box;
-  max-width: 100px!important;
+  max-width: 80px!important;
 }
 .home-icons{
-  font-size: 50px;
+  font-size: 30px;
   color: rgb(176, 159, 65);
 }
 
-.card-content {
+.card-content-home {
   padding: 20px;
   border-radius: 8px;
   text-align: center;

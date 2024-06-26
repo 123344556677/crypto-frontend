@@ -18,6 +18,13 @@ const BottomBar = () => {
         </NavLink>
       </NavItem>
       <NavItem className="bottom-bar-item">
+        <NavLink href="/quantify" className="ml-3 bottom-bar-link">
+          <MdOutlineBarChart className="bottom-bar-icons" />
+          <br />
+          <span className="link-text">Quantify</span>
+        </NavLink>
+      </NavItem>
+      <NavItem className="bottom-bar-item">
         <NavLink href="/help" className="bottom-bar-link">
           <MdOutlineSupportAgent className="bottom-bar-icons" />
           <br />

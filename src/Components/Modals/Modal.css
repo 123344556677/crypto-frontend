@@ -1,0 +1,11 @@
+.modal-content{
+    background: linear-gradient(to right, #141414, #252020);
+}
+.modal.fade .modal-dialog {
+max-width: 90%;
+}
+.custom-list{
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}

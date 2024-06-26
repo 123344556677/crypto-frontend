@@ -90,3 +90,17 @@ export const getSliderImages= () => {
 export const getAbout= () => {
   return api.get('/admin/getAbout');
 };
+export const getAnnouncement= () => {
+  return api.get('/setting/getAnnouncement');
+};
+
+//Quantiation
+export const getUserClicks= () => {
+  return api.get('/quantization/handleUserClick');
+};
+export const getUnitedHealthStockRate= () => {
+  return api.get('/quantization/getUnitedHealthStockRate');
+};
+export const getQuantizationData= () => {
+  return api.get('/quantization/getQuantizationData');
+};

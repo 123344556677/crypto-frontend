@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { List, Modal, ModalBody } from "reactstrap";
 import "./Modal.css";
+import { getAnnouncement } from "../../Api/Api";
 
 const DynamicModal = ({ isOpen, toggle, view, title, description, value }) => {
+  const [announcement, setAnnouncement] = useState();
+  useEffect(() => {
+    const fetchAnnouncement = async () => {
+      try {
+        const response = await getAnnouncement();
+        console.log(response,"announce response=--->")
+        setAnnouncement(response?.data?.announcements);
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
+    fetchAnnouncement()
+  }, []);
   let content;
+  console.log(announcement,"announcement values--->")
 
   switch (view) {
-    case "Announcement":
+    case "Announcements":
       content = (
         <div>
           <List className="custom-list">
-            {value?.map((data, index) => (
+            {announcement?.map((data, index) => (
               <li className="p-1" key={index}>
                 {data?.announcement}
               </li>

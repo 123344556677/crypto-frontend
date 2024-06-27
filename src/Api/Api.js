@@ -93,6 +93,9 @@ export const getAbout= () => {
 export const getAnnouncement= () => {
   return api.get('/setting/getAnnouncement');
 };
+export const getNumber= () => {
+  return api.get('setting/getPhoneNumber');
+};
 
 //Quantiation
 export const getUserClicks= () => {
@@ -103,4 +106,7 @@ export const getUnitedHealthStockRate= () => {
 };
 export const getQuantizationData= () => {
   return api.get('/quantization/getQuantizationData');
+};
+export const getCryptoRates= () => {
+  return api.get('/quantization/getCryptoRates');
 };

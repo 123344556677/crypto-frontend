@@ -1,26 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Row } from "reactstrap";
+import { Card, Col, Row, Table } from "reactstrap";
 import "./Quantify.css";
-import { getQuantizationData, getUserClicks, getUserLevel } from "../../Api/Api";
+import {
+  getCryptoRates,
+  getQuantizationData,
+  getUserClicks,
+  getUserLevel,
+} from "../../Api/Api";
+import { errorAlert } from "../../Components/Alerts/Alerts";
 
 const Quantify = () => {
+  const [cryptoGainers, setCryptoGainers] = useState();
+  const [cryptoLosers, setCryptoLosers] = useState();
+  const [cryptoView, setCryptoView] = useState("gainers");
+  const [userClicks, setUserClicks] = useState();
+  const [maxClicks, setMaxClicks] = useState();
   const navigate = useNavigate();
-   useEffect(() => {
-    const fetchUserClicks = async () => {
-      try {
-        const response = await getUserClicks();
-        // setUserData(response?.data?.user);
-        console.log(response,"user response---->")
-      } catch (error) {
-        console.error("Error fetching approved cash deposits:", error);
-      }
-    };
+
+  useEffect(() => {
     const fetchUserLevel = async () => {
       try {
         const response = await getUserLevel();
-        // setUserLevel(response?.data?.level);
       } catch (error) {
         console.error("Error fetching approved cash deposits:", error);
       }
@@ -28,17 +30,35 @@ const Quantify = () => {
     const fetchQuantizationData = async () => {
       try {
         const response = await getQuantizationData();
-        console.log(response,"quantization reposne---->")
-        // setUserLevel(response?.data?.level);
+        setUserClicks(response?.data?.quantization?.clicks);
+        setMaxClicks(response?.data?.quantization?.maxClicks);
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
+    const fetchCryptoRates = async () => {
+      try {
+        const response = await getCryptoRates();
+        setCryptoGainers(response?.data?.topGainers);
+        setCryptoLosers(response?.data?.topLosers);
       } catch (error) {
         console.error("Error fetching approved cash deposits:", error);
       }
     };
     fetchUserLevel();
-    fetchQuantizationData()
-    fetchUserClicks();
-    
+    fetchQuantizationData();
+    fetchCryptoRates();
   }, []);
+
+  const handleQuantify = async () => {
+    try {
+      const response = await getUserClicks();
+      setUserClicks(response?.data?.clicks);
+    } catch (error) {
+      console.error("Error fetching approved cash deposits:", error);
+      errorAlert(error?.response?.data?.err);
+    }
+  };
   return (
     <div className="main-div">
       <br />
@@ -65,18 +85,84 @@ const Quantify = () => {
                 <iframe
                   title="loading"
                   src="https://lottie.host/embed/86e6c5aa-2e54-4b45-a397-fe79356124c2/E49Ll5Yevl.json"
-                  frameBorder="0"
                   className="lottie-iframe"
                 ></iframe>
               </div>
               <div className="card-content mt-3">
                 <h3 className="text-left">Single Start Quantization</h3>
                 <div style={{ float: "right" }} className="mt-3 mb-3">
-                  <h5 className="">(3/3)</h5>
-                  <button className="gradient-button">Click to Quantify</button>
+                  <h5 className="text-center">
+                    ({userClicks} {maxClicks>0 && `/ ${maxClicks}`})
+                  </h5>
+                  <button
+                    className="gradient-button mt-2"
+                    onClick={handleQuantify}
+                  >
+                    Click to Quantify
+                  </button>
                 </div>
               </div>
             </Card>
+            <h6 className="mt-1" style={{ color: "grey" }}>
+              Note: Please check your balance once you completed your daily
+              clicks!
+            </h6>
+            <hr />
+            <div className="d-flex">
+              <h3
+                className="coins-button"
+                onClick={() => setCryptoView("gainers")}
+                style={{
+                  borderBottom: cryptoView === "gainers" && "2px solid white",
+                }}
+              >
+                Gainers
+              </h3>
+              <h3
+                className="coins-button ml-3"
+                onClick={() => setCryptoView("losers")}
+                style={{
+                  borderBottom: cryptoView === "losers" && "2px solid white",
+                }}
+              >
+                Losers
+              </h3>
+            </div>
+            <Table borderless className="coin-table" responsive>
+              <tbody>
+                {cryptoView === "gainers"
+                  ? cryptoGainers?.map((data, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{data?.name}</td>
+                        <td>{data?.price}</td>
+                        <td
+                          style={{
+                            color:
+                              data?.volume_change_24h < 0 ? "red" : "green",
+                          }}
+                        >
+                          {data?.volume_change_24h}
+                        </td>
+                      </tr>
+                    ))
+                  : cryptoLosers?.map((data, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{data?.name}</td>
+                        <td>{data?.price}</td>
+                        <td
+                          style={{
+                            color:
+                              data?.volume_change_24h < 0 ? "red" : "green",
+                          }}
+                        >
+                          {data?.volume_change_24h}
+                        </td>
+                      </tr>
+                    ))}
+              </tbody>
+            </Table>
           </Col>
         </Row>
       </div>

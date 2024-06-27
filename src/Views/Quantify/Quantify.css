@@ -1,7 +1,7 @@
 .custom-card {
    position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(to right, #1f1b3f, #2b2661, #343451)!important;
+  background: linear-gradient(to right, #1b1837, #0e0d25, #181824)!important;
   margin-bottom: 50px;
 }
 
@@ -37,4 +37,19 @@
   border-radius: 5px;
   cursor: pointer;
   border-radius: 40px;
+}
+.coin-table{
+  --bs-table-bg:#0e0e14!important;
+  --bs-table-color: white!important;
+  border-radius: 100px!important;
+  
+}
+.coins-button{
+  /* border-bottom: 2px solid white; */
+  background: transparent;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 15px;
+  cursor: pointer;
 }

@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 import { PiHandDepositFill, PiHandWithdrawFill } from "react-icons/pi";
 import { RiTeamFill } from "react-icons/ri";
 import { FaShareSquare } from "react-icons/fa";
-import { getAnnouncement, getSliderImages, getUnitedHealthStockRate} from "../../Api/Api";
+import { getSliderImages, getUnitedHealthStockRate } from "../../Api/Api";
 import { Card, Col, Row } from "reactstrap";
 import DynamicModal from "../../Components/Modals/Modal";
 
 const HomeCards = () => {
   const [sliderImages, setSliderImages] = useState();
   const [stockInfo, setStockInfo] = useState();
-  const [announcement, setAnnouncement] = useState();
-   const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [currentView, setCurrentView] = useState(null);
   const [description, setDescription] = useState(null);
   const [title, setTitle] = useState("");
@@ -31,32 +30,21 @@ const HomeCards = () => {
       try {
         const response = await getUnitedHealthStockRate();
         setStockInfo(response?.data?.currentRate);
-        console.log(response,"stock response---->")
-      } catch (error) {
-        console.error("Error fetching approved cash deposits:", error);
-      }
-    };
-    const fetchAnnouncement = async () => {
-      try {
-        const response = await getAnnouncement();
-        setAnnouncement(response?.data?.announcements);
-        setModalValue(response?.data?.announcements)
       } catch (error) {
         console.error("Error fetching approved cash deposits:", error);
       }
     };
     const openModal = () => {
-    setIsOpen(true);
-    setCurrentView("Announcements");
-    setModalValue(announcement);
-    setDescription("Get to know about latest news!")
-    setTitle("Announcement");
-  };
+      setIsOpen(true);
+      setCurrentView("Announcements");
+      // setModalValue(announcement);
+      setDescription("Get to know about latest news!");
+      setTitle("Announcement");
+    };
 
     fetchSliderImage();
-    fetchUnitedHealth()
-    fetchAnnouncement()
-    openModal()
+    fetchUnitedHealth();
+    openModal();
   }, []);
   return (
     <div>
@@ -66,9 +54,9 @@ const HomeCards = () => {
             <Carousel.Item key={index}>
               <img
                 style={{
-          width: "100%",
-          height: "400px",
-        }}
+                  width: "100%",
+                  height: "400px",
+                }}
                 src={data?.image}
                 alt="banner"
                 className="image-fluid"
@@ -119,22 +107,34 @@ const HomeCards = () => {
             </Link>
           </div>
         </div>
+        <hr />
         <div className="ml-3">
-        <Row className="w-100">
-      <Col xl={12}>
-      <Card className="custom-card">
-      <div className="d-flex m-2">
-      <img src="/unitedLogo.png" alt="logo" style={{height:"40px",width:"40px"}}/>
-      <h2 className="text-left ml-1 text-white">{stockInfo?.symbol||"UNO"}</h2>
-      </div>
-      <h3 className="text-center text-white">{stockInfo?.price||0}</h3>
-      <p className="text-center" style={{ color: stockInfo?.change < 0 ? 'red' : 'green' }}>
-        {stockInfo?.change||0}
-      </p>
-      </Card>
-      </Col>
-      </Row>
-      </div>
+          <Row className="w-100">
+            <Col xl={12}>
+              <Card className="custom-card">
+                <div className="d-flex m-2">
+                  <img
+                    src="/unitedLogo.png"
+                    alt="logo"
+                    style={{ height: "30px", width: "30px" }}
+                  />
+                  <h4 className="text-left ml-1 text-white">
+                    {stockInfo?.symbol || "UNO"}
+                  </h4>
+                </div>
+                <h3 className="text-center text-white">
+                  {stockInfo?.price || 0}
+                </h3>
+                <p
+                  className="text-center"
+                  style={{ color: stockInfo?.change < 0 ? "red" : "green" }}
+                >
+                  {stockInfo?.change || 0}
+                </p>
+              </Card>
+            </Col>
+          </Row>
+        </div>
       </div>
       <DynamicModal
         isOpen={isOpen}
@@ -144,7 +144,6 @@ const HomeCards = () => {
         description={description}
         value={modalValue}
       />
-      
     </div>
   );
 };

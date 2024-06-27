@@ -152,15 +152,6 @@ const Profile = () => {
                 onChange={handleChange}
                 required
               />
-              <Input
-                defaultValue={formData.fundPassword}
-                type="text"
-                name="fundPassword"
-                placeholder="fund password"
-                className="mt-3 login-inputs"
-                onChange={handleChange}
-                required
-              />
               <Button
                 type="submit"
                 className="border-0 w-100 mt-3 auth-button mb-5"
@@ -185,7 +176,7 @@ const Profile = () => {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{data?.transactionNumber}</td>
-                    <td>{data?.amount}</td>
+                    <td>${data?.amount}</td>
                     <td>{data?.status}</td>
                     <td>
                       {moment(data?.registrationTime).format(
@@ -212,7 +203,7 @@ const Profile = () => {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{data?.walletAddress}</td>
-                    <td>{data?.amount}</td>
+                    <td>${data?.amount}</td>
                     <td>{data?.status}</td>
                     <td>
                       {moment(data?.registrationTime).format(

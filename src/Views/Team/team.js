@@ -57,7 +57,7 @@ const Team = () => {
             <div className="d-flex justify-content-center">
               <img
                 className="logo mt-3"
-                src="/Family Loan Insurance Logo.png"
+                src="/logo.png"
                 alt="Logo"
               />
             </div>
@@ -91,11 +91,11 @@ const Team = () => {
                 <div className="mt-5 mb-5">
                   <div className="row">
                     <div className="col-6">
-                      Total People: <span> ${teamData?.totalPeople}</span>
+                      Total People: <span> {teamData?.totalPeople}</span>
                     </div>
 
                     <div className="col-6 text-right">
-                      New Users: <span> ${teamData?.newRegistrations} </span>
+                      New Users: <span> {teamData?.newRegistrations} </span>
                     </div>
 
                     <div className="col-6 mt-3">
@@ -141,11 +141,11 @@ const Team = () => {
                 <div className="mt-5 mb-5">
                   <div className="row">
                     <div className="col-6">
-                      Total People: <span> ${teamData?.totalPeople}</span>
+                      Total People: <span> {teamData?.totalPeople}</span>
                     </div>
 
                     <div className="col-6 text-right">
-                      New Users: <span> ${teamData?.newRegistrations} </span>
+                      New Users: <span> {teamData?.newRegistrations} </span>
                     </div>
 
                     <div className="col-6 mt-3">

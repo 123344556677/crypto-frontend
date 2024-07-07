@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import "./auth.css";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate,} from "react-router-dom";
@@ -11,11 +11,15 @@ import {
   toBase64,
   uploadImageToFirebase,
 } from "../../Common";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [checkAnimation, setCheckAnimation] = useState(false);
+   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showFundPassword, setShowFundPassword] = useState(false);
   const referral = new URLSearchParams(location.search).get('referral');
   const [formData, setFormData] = useState({
     fname: "",
@@ -183,6 +187,17 @@ const Signup = () => {
       console.log(err, "signup error-->");
     }
   };
+    const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const toggleFundPasswordVisibility = () => {
+    setShowFundPassword(!showFundPassword);
+  };
   return (
     <div className="main-div">
     <br/>
@@ -195,7 +210,7 @@ const Signup = () => {
             <div className="d-flex justify-content-center">
               <img
                 className="logo"
-                src="/Family Loan Insurance Logo.png"
+                src="/logo.png"
                 alt="Logo"
               />
             </div>
@@ -269,15 +284,24 @@ const Signup = () => {
                     className="mb-3 mt-4"
                     controlId="formBasicPassword"
                   >
+                  <InputGroup className="">
                     <Form.Control
                       name="password"
                       value={formData.password}
                       onChange={handlePasswordChange}
                       className="login-inputs"
-                      type="password"
+                     type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       required
                     />
+                    <Button
+                    variant=""
+                    onClick={togglePasswordVisibility}
+                    style={{ background: "white" }}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                   </Button>
+                    </InputGroup>
                   </Form.Group>
                 </Col>
 
@@ -286,6 +310,7 @@ const Signup = () => {
                     className="mb-3 mt-4"
                     controlId="formBasicConfirmPassword"
                   >
+                  <InputGroup>
                     <Form.Control
                       name="confirmPassword"
                       value={formData.confirmPassword}
@@ -294,10 +319,18 @@ const Signup = () => {
                         matchPass(formData.password, e.target.value);
                       }}
                       className="login-inputs"
-                      type="password"
+                      onClick={toggleConfirmPasswordVisibility}
                       placeholder="Confirm Password"
+                      type={showConfirmPassword ? "text" : "password"}
                       required
                     />
+                    <Button
+              variant=""
+              onClick={toggleConfirmPasswordVisibility}
+              style={{ background: "white" }}
+            >
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}</Button>
+              </InputGroup>
                     {passError && (
                       <p style={{ color: "red" }}>Passwords do not match!</p>
                     )}
@@ -308,15 +341,24 @@ const Signup = () => {
                     className="mb-3 mt-4"
                     controlId="formBasicPassword"
                   >
+                  <InputGroup>
                     <Form.Control
                       name="fundPassword"
                       value={formData.fundPassword}
                       onChange={handleChange}
                       className="login-inputs"
-                      type="password"
+                      type={showFundPassword ? "text" : "password"}
                       placeholder="Fund password"
                       required
                     />
+                    <Button
+              variant=""
+              onClick={toggleFundPasswordVisibility}
+              style={{ background: "white" }}
+            >
+              {showFundPassword ? <FaEyeSlash /> : <FaEye />}
+            </Button>
+            </InputGroup>
                   </Form.Group>
                 </Col>
                 <Col sm={6}>

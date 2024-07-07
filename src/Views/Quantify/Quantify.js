@@ -6,10 +6,12 @@ import "./Quantify.css";
 import {
   getCryptoRates,
   getQuantizationData,
+  getUser,
   getUserClicks,
   getUserLevel,
 } from "../../Api/Api";
 import { errorAlert } from "../../Components/Alerts/Alerts";
+import { roundToOneDecimal } from "../../Common";
 
 const Quantify = () => {
   const [cryptoGainers, setCryptoGainers] = useState();
@@ -17,6 +19,8 @@ const Quantify = () => {
   const [cryptoView, setCryptoView] = useState("gainers");
   const [userClicks, setUserClicks] = useState();
   const [maxClicks, setMaxClicks] = useState();
+  const [balance, setUserBalance] = useState();
+   const id = localStorage.getItem("id");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,15 +49,25 @@ const Quantify = () => {
         console.error("Error fetching approved cash deposits:", error);
       }
     };
+    const fetchUserInfo = async () => {
+      try {
+        const response = await getUser(id);
+        setUserBalance(response?.data?.user?.balance);
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
     fetchUserLevel();
     fetchQuantizationData();
     fetchCryptoRates();
+    fetchUserInfo();
   }, []);
 
   const handleQuantify = async () => {
     try {
       const response = await getUserClicks();
       setUserClicks(response?.data?.clicks);
+      setUserBalance(response?.data?.balance)
     } catch (error) {
       console.error("Error fetching approved cash deposits:", error);
       errorAlert(error?.response?.data?.err);
@@ -71,7 +85,7 @@ const Quantify = () => {
             <div className="d-flex justify-content-center">
               <img
                 className="logo mt-3"
-                src="/Family Loan Insurance Logo.png"
+                src="/logo.png"
                 alt="Logo"
               />
             </div>
@@ -80,6 +94,9 @@ const Quantify = () => {
               Tap to gain your balance and increase your level!
             </p>
             <hr />
+            <h3 className="mr-2 text-right mb-3" style={{ color: "rgb(176, 159, 65)" }}>
+                ${roundToOneDecimal(balance)}
+              </h3>
             <Card className="custom-card">
               <div className="lottie-background">
                 <iframe
@@ -133,31 +150,31 @@ const Quantify = () => {
                 {cryptoView === "gainers"
                   ? cryptoGainers?.map((data, index) => (
                       <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{data?.name}</td>
-                        <td>{data?.price}</td>
+                        <td> <h5>{index + 1}</h5></td>
+                        <td><h5>{data?.name}</h5></td>
+                        <td><h5>{data?.price}</h5></td>
                         <td
                           style={{
                             color:
                               data?.volume_change_24h < 0 ? "red" : "green",
                           }}
                         >
-                          {data?.volume_change_24h}
+                          <h5>{data?.volume_change_24h}</h5>
                         </td>
                       </tr>
                     ))
                   : cryptoLosers?.map((data, index) => (
                       <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{data?.name}</td>
-                        <td>{data?.price}</td>
+                        <td><h5>{index + 1}</h5></td>
+                        <td><h5>{data?.name}</h5></td>
+                        <td><h5>{data?.price}</h5></td>
                         <td
                           style={{
                             color:
                               data?.volume_change_24h < 0 ? "red" : "green",
                           }}
                         >
-                          {data?.volume_change_24h}
+                          <h5>{data?.volume_change_24h}</h5>
                         </td>
                       </tr>
                     ))}

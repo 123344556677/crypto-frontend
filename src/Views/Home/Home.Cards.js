@@ -5,11 +5,14 @@ import { Link } from "react-router-dom";
 import { PiHandDepositFill, PiHandWithdrawFill } from "react-icons/pi";
 import { RiTeamFill } from "react-icons/ri";
 import { FaShareSquare } from "react-icons/fa";
-import { getSliderImages, getUnitedHealthStockRate } from "../../Api/Api";
-import { Card, Col, Row } from "reactstrap";
+import { getCryptoRates, getSliderImages, getUnitedHealthStockRate } from "../../Api/Api";
+import { Card, Col, Row, Table } from "reactstrap";
 import DynamicModal from "../../Components/Modals/Modal";
 
 const HomeCards = () => {
+  const [cryptoGainers, setCryptoGainers] = useState();
+  const [cryptoLosers, setCryptoLosers] = useState();
+  const [cryptoView, setCryptoView] = useState("gainers");
   const [sliderImages, setSliderImages] = useState();
   const [stockInfo, setStockInfo] = useState();
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +37,15 @@ const HomeCards = () => {
         console.error("Error fetching approved cash deposits:", error);
       }
     };
+    const fetchCryptoRates = async () => {
+      try {
+        const response = await getCryptoRates();
+        setCryptoGainers(response?.data?.topGainers);
+        setCryptoLosers(response?.data?.topLosers);
+      } catch (error) {
+        console.error("Error fetching approved cash deposits:", error);
+      }
+    };
     const openModal = () => {
       setIsOpen(true);
       setCurrentView("Announcements");
@@ -41,7 +53,7 @@ const HomeCards = () => {
       setDescription("Get to know about latest news!");
       setTitle("Announcement");
     };
-
+    fetchCryptoRates();
     fetchSliderImage();
     fetchUnitedHealth();
     openModal();
@@ -134,6 +146,41 @@ const HomeCards = () => {
               </Card>
             </Col>
           </Row>
+          <Table borderless className="coin-table" responsive>
+              <tbody>
+                {cryptoView === "gainers"
+                  ? cryptoGainers?.map((data, index) => (
+                      <tr key={index}>
+                        <td> <h5>{index + 1}</h5></td>
+                        <td><h5>{data?.name}</h5></td>
+                        <td><h5>{data?.price}</h5></td>
+                        <td
+                          style={{
+                            color:
+                              data?.volume_change_24h < 0 ? "red" : "green",
+                          }}
+                        >
+                          <h5>{data?.volume_change_24h}</h5>
+                        </td>
+                      </tr>
+                    ))
+                  : cryptoLosers?.map((data, index) => (
+                      <tr key={index}>
+                        <td><h5>{index + 1}</h5></td>
+                        <td><h5>{data?.name}</h5></td>
+                        <td><h5>{data?.price}</h5></td>
+                        <td
+                          style={{
+                            color:
+                              data?.volume_change_24h < 0 ? "red" : "green",
+                          }}
+                        >
+                          <h5>{data?.volume_change_24h}</h5>
+                        </td>
+                      </tr>
+                    ))}
+              </tbody>
+            </Table>
         </div>
       </div>
       <DynamicModal

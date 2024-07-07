@@ -31,7 +31,7 @@ const Aboutus = () => {
             <div className="d-flex justify-content-center">
               <img
                 className="logo mt-3"
-                src="/Family Loan Insurance Logo.png"
+                src="/logo.png"
                 alt="Logo"
               />
             </div>
